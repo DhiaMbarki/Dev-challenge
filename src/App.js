@@ -51,7 +51,6 @@ const App = () => {
       switch (err.code) {
         case "auth/email-already-in-use":
           case "auth/invalid-email":
-            case "auth/user-not-found":
               setEmailError(err.message);
               break;
               case "auth/weak-password":
