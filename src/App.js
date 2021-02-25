@@ -21,12 +21,32 @@ const App = () => {
             case "auth/user-not-found":
               setEmailError(err.message);
               break;
+              case "auth/wrong-password":
               setPasswordError(err.message);
               break;
 
       }
     })
   }
+  const handleSignup = () => {
+    Firebase
+    .auth()
+    .CreateUserWithEmailAndPassword(email, password)
+    .catch((err) => {
+      switch (err.code) {
+        case "auth/email-already-in-use":
+          case "auth/invalid-email":
+            case "auth/user-not-found":
+              setEmailError(err.message);
+              break;
+              case "auth/weak-password":
+              setPasswordError(err.message);
+              break;
+
+      }
+    })
+  }
+  
   return (
     <div className="App">
       <h1>Ne9es</h1>
