@@ -55,6 +55,10 @@ const App = () => {
       }
     })
   }
+  useEffect(() => {
+    authListenner();
+  }, [])
+  
   return (
     <div className="App">
       <h1>Ne9es</h1>
