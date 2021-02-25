@@ -26,7 +26,7 @@ const Login = (props) => {
       />
       <p className = "errorMsj">{emailError}</p>
       <label>password</label>
-      <input type ="password"/>
+      <input type ="password" required value ={password} onChange ={e => setPassword(e.target.value) }/>
       </div>
     </section>
   );
