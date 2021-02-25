@@ -80,7 +80,17 @@ const App = () => {
 
   return (
     <div className="App">
-      <Login/>
+      <Login email={email} setEmail={setEmail}
+       password ={password}
+        setPassword = {setPassword}
+         handleLogin ={handleLogin}
+         handleSignup = {handleSignup}
+         hasAccount ={hasAccount}
+         setHasAccount ={setHasAccount}
+         emailError={emailError}
+         passwordError = {passwordError}
+         
+         />
     </div>
   );
 }
