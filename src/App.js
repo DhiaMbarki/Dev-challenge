@@ -1,6 +1,7 @@
 import React ,{ useState, useEffect }from "react";
 import Firebase from './Firebase'
 import "./App.css";
+import Login from './Login';
 
 const App = () => {
   const [user, setUser] = useState("");
@@ -9,7 +10,6 @@ const App = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [hasAccount, setHasAccount] = useState(false);
-  import Login from './Login';
 
   const clearInputs = () => {
     setEmail('')
