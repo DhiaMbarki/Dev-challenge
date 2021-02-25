@@ -24,6 +24,7 @@ const App = () => {
 
 
   const handleLogin = () => {
+    clearErrors()
     Firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
@@ -42,6 +43,7 @@ const App = () => {
     })
   }
   const handleSignup = () => {
+    clearErrors();
     Firebase
     .auth()
     .CreateUserWithEmailAndPassword(email, password)
@@ -60,8 +62,13 @@ const App = () => {
     })
   }
   const handleLogout = () => {
-    Firebase.auth(). onAuthStateChange(user => {
+    Firebase.auth().signOut();
+  }
+
+  const authListener = () => {
+    Firebase.auth(). onAuthStateChanged(user => {
       if(user) {
+        clearInputs();
         setUser(user)
       }else {
         setUser("");
@@ -69,7 +76,7 @@ const App = () => {
     })
   }
   useEffect(() => {
-    authListenner();
+    authListener();
   }, [])
 
   return (
