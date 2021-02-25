@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./Login.css";
 const Login = (props) => {
   const {
     email,
@@ -16,7 +16,7 @@ const Login = (props) => {
   return (
     <section className="login">
       <div className="loginContainer">
-        <label>UserName</label>
+        <label>Email</label>
         <input
           type="text "
           autoFocus
@@ -32,22 +32,25 @@ const Login = (props) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <p className = "errorMsj">{passwordError}</p>
-        <div className = "btnContainer">
+        <p className="errorMsj">{passwordError}</p>
+        <div className="btnContainer">
           {hasAccount ? (
             <>
-
-            <button>Sign in</button>
-            <p>I dont have account ? <span>sign Up</span> </p> 
+              <button onClick={handleLogin}>Sign in</button>
+              <p>
+                I dont have account ?
+                <span onClick={() => setHasAccount(!hasAccount)}>sign Up</span>{" "}
+              </p>
             </>
-
           ) : (
             <>
-            <button>sign up</button>
-            <p>I already have account ? <span>Sign in</span> </p>
+              <button onClick={handleSignup}>sign up</button>
+              <p>
+                I already have account ?{" "}
+                <span onClick={() => setHasAccount(!hasAccount)}>Sign in</span>{" "}
+              </p>
             </>
-
-          )} 
+          )}
         </div>
       </div>
     </section>
