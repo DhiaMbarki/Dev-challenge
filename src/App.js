@@ -10,6 +10,13 @@ const App = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [hasAccount, setHasAccount] = useState(false);
+
+  const clearInputs = () => {
+    setEmail('')
+    setPassword('');
+  }
+  
+
   const handleLogin = () => {
     Firebase
     .auth()
@@ -58,7 +65,7 @@ const App = () => {
   useEffect(() => {
     authListenner();
   }, [])
-  
+
   return (
     <div className="App">
       <h1>Ne9es</h1>
