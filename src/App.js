@@ -9,6 +9,7 @@ const App = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [hasAccount, setHasAccount] = useState(false);
+  import Login from './Login';
 
   const clearInputs = () => {
     setEmail('')
@@ -79,7 +80,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Ne9es</h1>
+      <Login/>
     </div>
   );
 }
