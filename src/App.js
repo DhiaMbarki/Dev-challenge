@@ -1,7 +1,6 @@
-import React from "react";
+import React ,{ useState, useEffect }from "react";
 import Firebase from './Firebase'
 import "./App.css";
-import React, { useState, useEffect } from "react";
 
 const App = () => {
   const [user, setUser] = useState("");
