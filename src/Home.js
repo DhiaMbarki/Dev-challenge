@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Home = () => {
+const Home = ({handleLogout}) => {
     return(
         <section className = "hero">
             <nav>
                 <h2>Welcome</h2>
-                <button>Logout</button>
+                <button onClick={handleLogout}>Logout</button>
             </nav>
 
         </section>
