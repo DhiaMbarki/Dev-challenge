@@ -46,7 +46,15 @@ const App = () => {
       }
     })
   }
-  
+  const handleLogout = () => {
+    Firebase.auth(). onAuthStateChange(user => {
+      if(user) {
+        setUser(user)
+      }else {
+        setUser("");
+      }
+    })
+  }
   return (
     <div className="App">
       <h1>Ne9es</h1>
