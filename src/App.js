@@ -15,7 +15,13 @@ const App = () => {
     setEmail('')
     setPassword('');
   }
+
+  const clearErrors = () => {
+    setEmailError('')
+    setPasswordError('');
+  }
   
+
 
   const handleLogin = () => {
     Firebase
