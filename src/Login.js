@@ -15,7 +15,7 @@ const Login = (props) => {
   } = props;
   return (
     <section className="login">
-      <div className="loginContainer"></div>
+      <div className="loginContainer">
       <label>UserName</label>
       <input
         type="text "
@@ -24,6 +24,10 @@ const Login = (props) => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
+      <p className = "errorMsj">{emailError}</p>
+      <label>password</label>
+      <input type ="password"/>
+      </div>
     </section>
   );
 };
