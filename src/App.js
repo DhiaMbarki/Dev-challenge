@@ -9,8 +9,24 @@ const App = () => {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [hasAccount, setHasAccount] = useState("false");
-  
+  const [hasAccount, setHasAccount] = useState(false);
+  const handleLogin = () => {
+    Firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .catch((err) => {
+      switch (err.code) {
+        case "auth/invalid-email":
+          case "auth/user-disabled":
+            case "auth/user-not-found":
+              setEmailError(err.message);
+              break;
+              setPasswordError(err.message);
+              break;
+
+      }
+    })
+  }
   return (
     <div className="App">
       <h1>Ne9es</h1>
