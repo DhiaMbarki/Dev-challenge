@@ -3,8 +3,8 @@ import fire from "./fire";
 import "./App.css";
 import Login from "./Login";
 import Home from "./Home";
-import firebase from '@firebase/app';
 require('firebase/auth');
+//Day 2
 
 const App = () => {
   const [user, setUser] = useState("");
