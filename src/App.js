@@ -3,8 +3,10 @@ import fire from "./fire";
 import "./App.css";
 import Login from "./Login";
 import Home from "./Home";
-require('firebase/auth');
-//Day 2
+import Axios from "axios";
+import history from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+require("firebase/auth");
 
 const App = () => {
   const [user, setUser] = useState("");
@@ -40,6 +42,17 @@ const App = () => {
             setPasswordError(err.message);
             break;
         }
+        Axios.post("http://localhost:5000/register", {
+          email,
+          password,
+        })
+          .then((result) => {
+            console.log(result);
+            history.push("/Login");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       });
   };
   const handleSignup = () => {
@@ -78,24 +91,30 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
-      {user ? (
-        <Home handleLogout={handleLogout} />
-      ) : (
-        <Login
-          email={email}
-          setEmail={setEmail}
-          password={password}
-          setPassword={setPassword}
-          handleLogin={handleLogin}
-          handleSignup={handleSignup}
-          hasAccount={hasAccount}
-          setHasAccount={setHasAccount}
-          emailError={emailError}
-          passwordError={passwordError}
-        />
-      )}
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/Register" component={Home} />
+        <Route path="/Login" component={Login} />
+      </Switch>
+    </Router>
+    // <div className="App">
+    //   {user ? (
+    //     <Home handleLogout={handleLogout} />
+    //   ) : (
+    //     <Login
+    //       email={email}
+    //       setEmail={setEmail}
+    //       password={password}
+    //       setPassword={setPassword}
+    //       handleLogin={handleLogin}
+    //       handleSignup={handleSignup}
+    //       hasAccount={hasAccount}
+    //       setHasAccount={setHasAccount}
+    //       emailError={emailError}
+    //       passwordError={passwordError}
+    //     />
+    //   )}
+    // </div>
   );
 };
 
