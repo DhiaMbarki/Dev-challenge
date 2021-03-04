@@ -12,27 +12,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.post("/register", async (req, res) => {
-  try {
-    console.log(req.body);
-    const { email, password } = req.body;
-    const details = { email, password };
-    const User = await Users.findOne({ email });
-    if (User) {
-      return res.json({ msg: "User already exist" });
-    }
-    const newUser = new Users(details);
-    newUser.save();
-    return res.json({
-      msg: "  user has been successfully added to our database ",
-      newUser,
-    });
-  } catch (err) {
-    console.log(err);
-  }
-});
 
-app.get("/getUser/:uid", async (req, res) => {
+
+
+
+
+
+app.get("/get/:uid", async (req, res) => {
   try {
     let user = await Users.findOne({ uid: req.params.uid });
     return res.send(user);
@@ -41,24 +27,47 @@ app.get("/getUser/:uid", async (req, res) => {
   }
 });
 
-app.put("/updateUser", async (req, res) => {
+app.post("/post", async (req, res) => {
   try {
-    const result = await cloud.uploads(req.body.profilePic);
-    let update = await Users.findOneAndUpdate(
-      { uid: req.uid },
-      {
+    var obj = {};
+
+    if (req.body.name) {
+      obj["name"] = req.body.name;
+    }
+
+    if (req.body.bio) {
+      obj["bio"] = req.body.bio;
+    }
+
+    if (req.body.phoneNumber) {
+      obj["phoneNumber"] = req.body.phoneNumber;
+    }
+
+    if (req.body.image) {
+      obj["image"] = req.body.image;
+    }
+
+    let user = await Users.findOneAndUpdate({ uid: req.body.uid }, obj);
+    if (!user) {
+      const details = {
         name: req.body.name,
         bio: req.body.bio,
-        phone: req.body.phone,
-        profilePic: result.url,
-        email: req.body.userName,
-        password: req.body.password,
-      }
-    );
-    return res.json("user fields updated with success", update);
+        phoneNumber: req.body.phoneNumber,
+        uid: req.body.uid,
+        image: req.body.image,
+      };
+
+      const newUser = new Users(details);
+      await newUser.save();
+      res.json({
+        msg: "  user join to database ",
+      });
+    }
   } catch (err) {
     console.log(err);
   }
 });
+
+
 
 app.listen(port, () => console.log(`server up and running ${port}`));

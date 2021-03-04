@@ -25,10 +25,13 @@ let User = mongoose.Schema({
   uid: String,
   name: String,
   bio: String,
-  phone: Number,
-  profilePic: String,
-  email: String,
+  phoneNumber: Number,
+  image: String,
   password: String,
 });
 
 module.exports = mongoose.model("user", User);
+
+
+
+
